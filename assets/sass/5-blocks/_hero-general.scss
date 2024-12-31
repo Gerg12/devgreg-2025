@@ -1,0 +1,146 @@
+.hero-general-overlay.hero-general-section {
+	margin-top: -194.75px;
+	padding-top: 105px;
+
+}
+
+.is-root-container .hero-general-overlay.hero-general-section {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.hero-general__image-box {
+	position: relative;
+	min-height: 650px;
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	min-height: 430px;
+	aspect-ratio: 1920/430;
+	
+	@include tablet-up {
+	}
+}
+
+.hero-general__image-box img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.hero-general-contained-image .hero-general__image-box img {
+	object-fit: contain;
+}
+
+.hero-general-content {
+	position: relative;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	// background: transparent linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.00) 100%) 0% 0% no-repeat padding-box;
+
+	padding: 50px $gutter;
+	
+	@include tablet-up {
+		padding: 0 $gutter;
+		padding-top: 0;
+	}
+}
+
+.hero-general-content__inner {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	position: relative;
+}
+
+.hero-general-section .hero-general__title {
+	color: #FFF;
+	// text-shadow: 0px 4px 20px rgba(0, 0, 0, 0.50);
+	font-size: 44px;
+	font-weight: 400;
+	letter-spacing: 5px;
+	margin-bottom: 0;
+	font-family: $font2;
+	font-size: 44px;
+	line-height: normal;
+	text-align: center;
+	
+	@include tablet-up {
+		max-width: 900px;
+		margin-bottom: 20px;
+	}
+
+	@include small-desktop-up {
+		font-size: 62px;
+	}
+}
+
+.hero-general__subtitle {
+	color: $colorPrimary;
+	text-align: center;
+	font-family: $font2;
+	font-style: italic;
+	font-weight: 400;
+	line-height: normal;
+	font-size: 44px;
+	margin-top: 0;
+
+	@include tablet-up {
+		font-size: 64px;
+	}
+}
+
+.hero-general__text {
+	color: $colorSecondary;
+	text-align: center;
+	font-size: 30px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 32px;
+	margin-bottom: 20px;
+}
+
+.hero-general__text p:last-child {
+	margin-bottom: 0;
+}
+
+.hero-general__button-box {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 30px;
+
+	@include tablet-up {
+		flex-direction: row;
+	}
+}
+
+.hero-general__button-box a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 9px 15px;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	max-width: 300px;
+	padding: 5px 25px;
+	min-height: 42px;
+	background-color: $colorPrimary;
+	color: $white;
+	text-decoration: none;
+	
+	@include tablet-up {
+		margin: 0 9px;
+	}
+}

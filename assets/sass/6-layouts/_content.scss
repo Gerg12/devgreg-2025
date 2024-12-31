@@ -1,0 +1,23 @@
+.content-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.page-content {
+	background: #f4f4f4;
+}
+
+.page-content main {
+
+	@include tablet-up {
+		width: 75%;
+	}
+}
+
+.page-content aside {
+	
+	@include tablet-up {
+		width: 25%;
+	}
+}

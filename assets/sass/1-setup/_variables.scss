@@ -1,0 +1,87 @@
+:root {
+	--largeDesktop: 1350px;
+	--smallDesktop: 1200px;
+	--desktop: 1024px;
+	--navBreak: 901px;
+	--block: 782px;
+	--tablet: 768px;
+	--mobile: 600px;
+	--smallMobile: 480px;
+
+	--gutter: 25px;
+	--container: 1300px;
+
+	--assetPath: "../../assets/images";
+
+	--color-primary: #ff4916;
+	--color-secondary: #3595E2;
+	--color-tertiary: #83bca9;
+	--color-4: #cae7ff;
+	--color-5: #f6fafd;
+	--color-6: #1C5889;
+	--color-7: #BFBEC0;
+	--color-8: #EBF5FD;
+	--text-color: #1C1B1F;
+
+
+	// Font Family
+	--font-family--1: "Arial", sans-serif;
+	--font-family--2: "Arial", sans-serif;
+}
+
+@keyframes wiggle {
+	0% {
+			transform: rotate(10deg);
+	}
+	25% {
+			transform: rotate(-10deg);
+	}
+	50% {
+			transform: rotate(10deg);
+	}
+	75% {
+			transform: rotate(-10deg);
+	}
+	100% {
+			transform: rotate(10deg);
+	}
+}
+
+$colorPrimary: var(--color-primary);
+$colorSecondary: var(--color-secondary);
+$colorTertiary: var(--color-tertiary);
+$color4: var(--color-4);
+$color5: var(--color-5);
+$color6: var(--color-6);
+$color7: var(--color-7);
+$color8: var(--color-8);
+$textColor: var(--text-color);
+$white: #fff;
+$black: #000;
+
+$buttonHover: #CC5B3D;
+$buttonHover2: #FFF8F6;
+$buttonHover3: #2576B7;
+$buttonHover4: #F4F9FD;
+
+// Fonts
+$font1: var(--font-family--1);
+$font2: var(--font-family--2);
+
+
+$gutter: 25px;
+$container: 1320px;
+$containerSmall: 914px;
+$blockGap: var(--block-gap);
+$headerHeight: 95px;
+
+
+//  Breakpoints
+$largeDesktop: 1350px;
+$smallDesktop: 1220px;
+$desktop: 1024px;
+$navBreak: 1064px;
+$block: 782px;
+$tablet: 768px;
+$mobile: 600px;
+$smallMobile: 480px;
