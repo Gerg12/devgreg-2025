@@ -30,15 +30,20 @@ function styles() {
 function scripts() {
   return gulp
     .src(paths.scripts.src)
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['@babel/preset-env']
+    }))
     .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.scripts.dest))
     .pipe(browserSync.stream());
 }
 
 function watch() {
   browserSync.init({
-    proxy: 'http://hpm-theme.staging', // Update with your local WordPress site URL
-		https: true
+    proxy: 'http://devgreg2025.staging',
+    https: true
   });
 
   gulp.watch(paths.styles.src, styles);
