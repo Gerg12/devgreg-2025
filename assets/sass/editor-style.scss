@@ -1,3 +1,4 @@
+
 @import '1-setup/variables';
 @import '1-setup/mixins';
 @import '1-setup/fonts';
@@ -17,7 +18,3 @@
 @import './6-layouts/footer';
 @import './6-layouts/content';
 @import './6-layouts/gutenberg';
-
-body {
-  background-color: red;
-}

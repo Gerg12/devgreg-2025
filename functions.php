@@ -247,7 +247,7 @@ function my_acf_init_block_types() {
 }
 
 function custom_admin_styles() {
-	wp_enqueue_style('admin-styles', get_template_directory_uri() . '/dist/css/style.css');
+	wp_enqueue_style('admin-styles', get_template_directory_uri() . '/dist/css/editor-style.css');
 }
 add_action('admin_enqueue_scripts', 'custom_admin_styles');
 
