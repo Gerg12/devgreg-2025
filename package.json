@@ -7,7 +7,7 @@
     "gulp-sass": "^5.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.x",
+    "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.x",
     "@babel/preset-react": "^7.26.3",
     "browser-sync": "^2.29.3",

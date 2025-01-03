@@ -4,6 +4,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 const uglify = require('gulp-uglify');
+const babel = require('gulp-babel');
 
 const paths = {
   styles: {
