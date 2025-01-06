@@ -93,3 +93,21 @@ jQuery(document).on('ajaxComplete', function() {
     initializeImageRotation();
 });
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('#masthead');
+  
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      header.classList.add('sticky');
+    } else {
+      header.classList.remove('sticky');
+    }
+  };
+
+  // Initial check in case page is loaded scrolled down
+  handleScroll();
+  
+  // Add scroll event listener
+  window.addEventListener('scroll', handleScroll);
+});

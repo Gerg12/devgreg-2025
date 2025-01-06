@@ -1,11 +1,28 @@
 #masthead.site-header {
 	padding-top: 16px;
 	padding-bottom: 16px;
-	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
 	z-index: 999;
-	box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.1);
-	background-color: #1c1c1c; /* Dark gray background */
-	color: #ffffff; /* White text */
+	box-shadow: none;
+	background-color: transparent;
+	color: #ffffff;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+	// Add sticky styles
+	&.sticky {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		animation: slideDown 0.3s ease-in-out;
+		background-color: #1c1c1c;
+		box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.1);
+	}
 }
 
 .site-header__inner {
@@ -261,5 +278,15 @@
 
 	.custom-logo-link:hover & {
 		color: $colorSecondary;
+	}
+}
+
+// Add animation for smooth sticky header appearance
+@keyframes slideDown {
+	from {
+		transform: translateY(-100%);
+	}
+	to {
+		transform: translateY(0);
 	}
 }

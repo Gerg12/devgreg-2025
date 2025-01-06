@@ -60,7 +60,6 @@
 	position: relative;
 	height: 100%;
 	display: flex;
-	justify-content: center;
 	z-index: 2;
 	padding: 50px $gutter;
 	
@@ -69,16 +68,13 @@
 	}
 }
 
-.hero-general-content__inner {
+.hero-general-content .wp-block-group__inner-container {
 	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
-	margin: 0 auto;
 	position: relative;
-	max-width: 900px;
 }
 
 .hero-general__title {
@@ -90,9 +86,15 @@
 	// text-align: center;
 	line-height: 1.2;
 	
+	max-width: 900px;
+	
 	@include tablet-up {
 		font-size: 62px;
 	}
+}
+
+.hero-general__subtitle {
+	max-width: 900px;
 }
 
 .hero-general__text {
@@ -100,6 +102,7 @@
 	// text-align: center;
 	font-size: 20px;
 	margin-bottom: 30px;
+	max-width: 900px;
 	
 	@include tablet-up {
 		font-size: 24px;
