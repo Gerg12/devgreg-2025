@@ -51,3 +51,45 @@ jQuery(document).ready(function($) {
         $('html').removeClass('menu-open');
 	});
 });
+
+function initializeImageRotation() {
+    const cards = document.querySelectorAll('.flex-cards__item-inner');
+    
+    cards.forEach(card => {
+        const images = card.querySelectorAll('.flex-cards__image');
+        
+        // Only proceed if we have multiple images
+        if (images && images.length > 1) {
+            let currentIndex = 0;
+            images[0].classList.add('active'); // Ensure first image is visible
+            
+            // Generate random interval between 2000ms (2s) and 5000ms (5s)
+            const randomInterval = Math.floor(Math.random() * (5000 - 2000 + 1) + 2000);
+            
+            setInterval(() => {
+                // Remove active class from current image
+                images[currentIndex].classList.remove('active');
+                
+                // Move to next image
+                currentIndex = (currentIndex + 1) % images.length;
+                
+                // Add active class to next image
+                images[currentIndex].classList.add('active');
+            }, randomInterval); // Random speed for each card
+        } else if (images && images.length === 1) {
+            // If only one image, make sure it's visible
+            images[0].classList.add('active');
+        }
+    });
+}
+
+// Initialize when document is ready
+jQuery(document).ready(function($) {
+    initializeImageRotation();
+});
+
+// Re-initialize when new content might be loaded
+jQuery(document).on('ajaxComplete', function() {
+    initializeImageRotation();
+});
+

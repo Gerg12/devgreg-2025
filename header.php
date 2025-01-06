@@ -41,14 +41,20 @@
 			<div class="site-header__inner">
 				<div class="site-branding">
 					<a href="/" class="custom-logo-link" rel="home" aria-current="page">
-						<h2 class="logo-title">
-							<?php echo get_bloginfo(); ?>
-						</h2>
-						<h3 class="logo-subtitle">
-							<?php echo get_bloginfo('description'); ?>
-						</h3>
-
-						<img style="display: none;" src="<?php echo get_template_directory_uri(); ?>/dist/images/logo.svg" alt="Logo">
+						<?php
+						if (has_custom_logo()) {
+							the_custom_logo();
+						} else {
+						?>
+							<h2 class="logo-title">
+								<?php echo get_bloginfo(); ?>
+							</h2>
+							<h3 class="logo-subtitle">
+								<?php echo get_bloginfo('description'); ?>
+							</h3>
+						<?php
+						}
+						?>
 					</a>
 				</div>
 				<nav id="site-navigation" class="main-navigation">

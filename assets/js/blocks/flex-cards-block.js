@@ -6,21 +6,22 @@ const {
 } = wp.editor;
 const {
 	TextControl,
+	Button,
 } = wp.components;
 
 // Flex Cards Block
 registerBlockType("custom-block-plugin/flex-cards-block", {
-	title: "Flex Cards Block",
+	title: "Flex Cards Block 2",
 	icon: "grid-view",
 	category: "common",
 	attributes: {
 		flexCards: {
 			type: "array",
 			default: [
-				{ title: "", link: "" },
-				{ title: "", link: "" },
-				{ title: "", link: "" },
-				{ title: "", link: "" },
+				{ title: "", link: "", images: [] },
+				{ title: "", link: "", images: [] },
+				{ title: "", link: "", images: [] },
+				{ title: "", link: "", images: [] },
 			],
 		},
 		blocksPerRow: {
@@ -106,36 +107,73 @@ registerBlockType("custom-block-plugin/flex-cards-block", {
 					style={{ backgroundColor: backgroundColor }}
 				>
 					<div className="flex-cards__inner">
-						<div className="flex-cards__left-column">
-							<div className="flex-cards__column-inner">
-								<RichText
-									className="flex-cards__block-title"
-									tagName="h2"
-									value={blockTitle}
-									onChange={onBlockTitleChange}
-									placeholder="Enter block title"
-								/>
-								<RichText
-									className="flex-cards__block-text"
-									tagName="p"
-									value={blockText}
-									onChange={onBlockTextChange}
-									placeholder="Enter block text"
-								/>
-								<RichText
-									className="flex-cards__block-link"
-									tagName="a"
-									value={blockLink}
-									onChange={onBlockLinkChange}
-									placeholder="Enter block link"
-								/>
-							</div>
-						</div>
-						<div className="flex-cards__right-column">
+						<div className="flex-cards__content">
 							<div className="flex-cards__grid">
 								{flexCards.map((card, index) => (
 									<div key={index} className="flex-cards__item">
 										<div className="flex-cards__item-inner">
+											<Button 
+												onClick={() => {
+													const updatedCards = [...flexCards];
+													if (!updatedCards[index].images) {
+														updatedCards[index].images = [];
+													}
+													updatedCards[index].images.push({ url: '', id: '' });
+													setAttributes({ flexCards: updatedCards });
+												}}
+												className="components-button is-secondary"
+											>
+												Add Image
+											</Button>
+
+											{(card.images || []).map((image, imageIndex) => (
+												<div key={imageIndex} className="flex-cards__image-container">
+													<MediaUpload
+														onSelect={(media) => {
+															const updatedCards = [...flexCards];
+															updatedCards[index].images[imageIndex] = {
+																url: media.url,
+																id: media.id
+															};
+															setAttributes({ flexCards: updatedCards });
+														}}
+														allowedTypes={['image']}
+														value={image.id}
+														render={({ open }) => (
+															<div className="flex-cards__image-wrapper">
+																{image.url ? (
+																	<>
+																		<img
+																			src={image.url}
+																			alt=""
+																			className="flex-cards__image"
+																			onClick={open}
+																		/>
+																		<Button 
+																			onClick={() => {
+																				const updatedCards = [...flexCards];
+																				updatedCards[index].images.splice(imageIndex, 1);
+																				setAttributes({ flexCards: updatedCards });
+																			}}
+																			className="components-button is-link is-destructive"
+																		>
+																			Remove
+																		</Button>
+																	</>
+																) : (
+																	<Button 
+																		onClick={open}
+																		className="flex-cards__image-button"
+																	>
+																		Select Image
+																	</Button>
+																)}
+															</div>
+														)}
+													/>
+												</div>
+											))}
+
 											<RichText
 												className="flex-cards__title"
 												tagName="h2"
@@ -153,19 +191,7 @@ registerBlockType("custom-block-plugin/flex-cards-block", {
 												}
 												placeholder="Enter link"
 											/>
-											<svg
-												className="flex-cards__arrow"
-												width="117"
-												height="102"
-												viewBox="0 0 117 102"
-												fill="none"
-												xmlns="http://www.w3.org/2000/svg"
-											>
-												<path
-													d="M117.006 75.3218V22.7625V0.349609H94.7453H42.5385V22.7625H79.0956L0.672607 101.717L32.0623 101.809L94.7453 38.6985V75.3218H117.006Z"
-													fill="#404041"
-												/>
-											</svg>
+											
 										</div>
 									</div>
 								))}
@@ -193,35 +219,23 @@ registerBlockType("custom-block-plugin/flex-cards-block", {
 				style={{ backgroundColor: backgroundColor }}
 			>
 				<div className="flex-cards__inner">
-					<div className="flex-cards__left-column">
-						<div className="flex-cards__column-inner">
-							<h2 className="flex-cards__block-title">{blockTitle}</h2>
-							<p className="flex-cards__block-text">{blockText}</p>
-							<a href={blockLink} className="flex-cards__block-link">
-								Read More
-							</a>
-						</div>
-					</div>
-					<div className="flex-cards__right-column">
+					<div className="flex-cards__content">
 						<div className="flex-cards__grid">
 							{flexCards.map((card, index) => (
 								<a key={index} href={card.link} className="flex-cards__item">
 									<div className="flex-cards__item-inner">
+										{(card.images || []).map((image, imageIndex) => (
+											image.url && (
+												<img 
+													key={imageIndex}
+													className={`flex-cards__image ${imageIndex === 0 ? 'active' : ''}`}
+													src={image.url} 
+													alt={card.title} 
+													data-index={imageIndex}
+												/>
+											)
+										))}
 										<h2 className="flex-cards__title">{card.title}</h2>
-
-										<svg
-											className="flex-cards__arrow"
-											width="117"
-											height="102"
-											viewBox="0 0 117 102"
-											fill="none"
-											xmlns="http://www.w3.org/2000/svg"
-										>
-											<path
-												d="M117.006 75.3218V22.7625V0.349609H94.7453H42.5385V22.7625H79.0956L0.672607 101.717L32.0623 101.809L94.7453 38.6985V75.3218H117.006Z"
-												fill="#404041"
-											/>
-										</svg>
 									</div>
 								</a>
 							))}
@@ -231,4 +245,21 @@ registerBlockType("custom-block-plugin/flex-cards-block", {
 			</div>
 		);
 	},
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+	const cards = document.querySelectorAll('.flex-cards__item-inner');
+	
+	cards.forEach(card => {
+		const images = card.querySelectorAll('.flex-cards__image');
+		if (images.length > 1) {
+			let currentIndex = 0;
+			
+			setInterval(() => {
+				images[currentIndex].classList.remove('active');
+				currentIndex = (currentIndex + 1) % images.length;
+				images[currentIndex].classList.add('active');
+			}, 3000); // Change image every 3 seconds
+		}
+	});
 });

@@ -9,15 +9,16 @@
 }
 
 .page-content main {
+	max-width: 100%;
 
 	@include tablet-up {
-		width: 75%;
+		flex: 3;
 	}
 }
 
 .page-content aside {
 	
 	@include tablet-up {
-		width: 25%;
+		flex: 1;
 	}
 }
