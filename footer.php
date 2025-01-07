@@ -16,7 +16,13 @@
 			<div class="site-footer__inner">
 				<div class="site-footer__column site-footer__column-1 footer-logo__column">
 					<a href="/" class="custom-logo-link" rel="home" aria-current="page">
-						<img width="125" height="125" src="<?php echo get_template_directory_uri(); ?>/dist/images/logo.svg" class="custom-logo" alt="HPM Theme" decoding="async">
+						<?php
+							$custom_logo_id = get_theme_mod('custom_logo');
+							$logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+							if ($logo) {
+								echo '<img width="125" height="125" src="' . esc_url($logo[0]) . '" class="custom-logo" alt="' . get_bloginfo('name') . '" decoding="async">';
+							}
+						?>
 					</a>
 					<div class="footer-social__icon-box">
 						<a href="#twitter">
