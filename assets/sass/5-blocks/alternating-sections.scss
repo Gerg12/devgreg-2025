@@ -1,0 +1,141 @@
+.alternating-section {
+  background-color: $alternatingSectionsBG;
+  background-image: $alternatingSectionsRadialBG;
+
+  .header2-simple {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    color: $alternatingSectionsHeaderColor;
+  }
+
+  .paragraph-sm {
+    margin-bottom: 30px;
+    p {
+      font-family: $font2;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      color: $alternatingSectionsBodyColor;
+    }
+  }
+
+  .alternating-section-item {
+    width: 100%;
+    display: flex;
+    
+    @media(max-width: $tablet - 1) {
+      flex-direction: column;
+    }
+
+    // Alternate layout for even items
+    & + .alternating-section-item:nth-child(even) {
+      .image-container {
+        order: 1;
+      }
+      .text-container {
+        order: 2;
+      }
+    }
+  }
+
+  .image-container {
+    background-position: center 66%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+    min-height: 400px;
+
+    @media(max-width: $tablet - 1) {
+      width: 100%;
+    }
+
+    &:before {
+      display: block;
+      content: "";
+      padding-top: 51%;
+    }
+  }
+  
+  .text-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    
+    @media(max-width: $tablet - 1) {
+      width: 100%;
+      order: 2;
+    }
+  }
+
+  .text-container-inner {
+    width: calc(#{$container / 2} - #{$gutter / 2});
+    max-width: 100%;
+  }
+
+  // Alignment for odd rows
+  .alternating-section-item:nth-child(odd) {
+    .text-container {
+      @media(min-width: $smallDesktop) {
+        padding-left: 3rem;
+      }
+    }
+    .text-container-inner {
+      @media(min-width: $smallDesktop) {
+        padding-right: $gutter;
+        margin-left: auto;
+      }
+    }
+  } 
+
+  // Alignment for even rows
+  .alternating-section-item:nth-child(even) {
+    .text-container {
+      @media(min-width: $smallDesktop) {
+        padding-right: 3rem;
+      }
+    }
+    .text-container-inner {
+      @media(min-width: $smallDesktop) {
+        margin-right: auto;
+        padding-left: $gutter;
+      }
+    }
+  }
+
+  // List styles
+  li {
+    font-family: $font2;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.75;
+    letter-spacing: normal;
+  }
+
+  // Link styles
+  .alternating-text-link {
+    font-family: $font2;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $alternatingSectionsLinkColor;
+    transition: all 0.3s ease;
+    text-decoration: $alternatingSectionsLinkTextDecoration;
+    
+    &:hover {
+      color: $alternatingSectionsLinkHoverColor;
+      text-decoration: underline;
+    }
+  }
+}
