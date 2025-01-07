@@ -14,12 +14,16 @@ registerBlockType("custom-blocks/alternating-section-item", {
 		backgroundImage: {
 			type: 'string',
 			default: ''
+		},
+		imageAlt: {
+			type: 'string',
+			default: ''
 		}
 	},
 
 	edit: (props) => {
 		const {
-			attributes: { backgroundImage },
+			attributes: { backgroundImage, imageAlt },
 			setAttributes,
 		} = props;
 
@@ -49,18 +53,26 @@ registerBlockType("custom-blocks/alternating-section-item", {
 						/>
 					</div>
 				</div>
-				<div 
-					className="image-container" 
-					style={{ backgroundImage: `url(${backgroundImage})` }}
-				/>
+				<div className="image-container">
+					{backgroundImage && (
+						<img 
+							src={backgroundImage} 
+							alt={imageAlt}
+							className="section-image"
+						/>
+					)}
+				</div>
 				<InspectorControls>
 					<PanelBody title="Section Settings">
 						<MediaUpload
-							onSelect={(media) => setAttributes({ backgroundImage: media.url })}
+							onSelect={(media) => setAttributes({ 
+								backgroundImage: media.url,
+								imageAlt: media.alt 
+							})}
 							type="image"
 							render={({ open }) => (
 								<Button onClick={open}>
-									{backgroundImage ? 'Change Background Image' : 'Add Background Image'}
+									{backgroundImage ? 'Change Image' : 'Add Image'}
 								</Button>
 							)}
 						/>
@@ -72,7 +84,7 @@ registerBlockType("custom-blocks/alternating-section-item", {
 
 	save: (props) => {
 		const {
-			attributes: { backgroundImage },
+			attributes: { backgroundImage, imageAlt },
 		} = props;
 
 		return (
@@ -82,10 +94,15 @@ registerBlockType("custom-blocks/alternating-section-item", {
 						<InnerBlocks.Content />
 					</div>
 				</div>
-				<div 
-					className="image-container" 
-					style={{ backgroundImage: `url(${backgroundImage})` }}
-				/>
+				<div className="image-container">
+					{backgroundImage && (
+						<img 
+							src={backgroundImage} 
+							alt={imageAlt}
+							className="section-image"
+						/>
+					)}
+				</div>
 			</div>
 		);
 	},
